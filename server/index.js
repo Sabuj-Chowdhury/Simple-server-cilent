@@ -43,6 +43,12 @@ app.get("/", (req, res) => {
   res.send("server running !!!");
 });
 
+app.post("/users", (req, res) => {
+  console.log("API is executing....");
+
+  console.log(req.body);
+});
+
 app.listen(port, () => {
   console.log(`server is running at ->${port}`);
 });
