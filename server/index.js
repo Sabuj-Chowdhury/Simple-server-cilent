@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 // middleware
 app.use(cors());
+app.use(express.json());
 
 // sample data
 const users = [
@@ -47,6 +48,10 @@ app.post("/users", (req, res) => {
   console.log("API is executing....");
 
   console.log(req.body);
+  const newUser = req.body;
+  newUser.id = users.length + 1;
+  users.push(newUser);
+  res.send(newUser);
 });
 
 app.listen(port, () => {

@@ -10,8 +10,9 @@ function App() {
   }, []);
   const handleForm = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
     const addUser = { name, email };
     console.log(addUser);
     fetch("http://localhost:5000/users", {
@@ -24,6 +25,9 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         console.log("inside post response", data);
+        const newUser = [...user, data];
+        setUser(newUser);
+        form.reset();
       });
   };
   return (
